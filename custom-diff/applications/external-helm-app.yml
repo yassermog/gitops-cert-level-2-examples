@@ -16,9 +16,22 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: example02
-
+  
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /annotations/creation
+  - group: ''
+    kind: Secret
+    jsonPointers:
+      - /data
+      - /stringData
+    
   # Sync policy
   syncPolicy:
     syncOptions:
       - CreateNamespace=true  
+
+      
    
